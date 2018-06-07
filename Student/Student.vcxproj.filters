@@ -97,7 +97,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="zdll.lib">
+    <Library Include="zlib.lib">
       <Filter>头文件</Filter>
     </Library>
   </ItemGroup>

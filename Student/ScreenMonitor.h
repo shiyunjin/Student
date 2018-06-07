@@ -4,7 +4,7 @@
 // zlib库 需要使用其中的压缩图片功能
 #include "zlib.h"
 #include "zconf.h"
-#pragma comment(lib,"zdll.lib")
+#pragma comment(lib,"zlib.lib")
 //////////////////////////////////////////////////////////////////////////
 #include <afxwin.h>
 #include "Comment.h"
