@@ -276,7 +276,7 @@ void CControlCenter::EndMulticast()
 	{
 		Sleep(100);
 		GetExitCodeThread(m_hMulticast, &exitCode);
-		TerminateThread(m_hMulticast, 0);
+		//TerminateThread(m_hMulticast, 0);
 	}
 	//	TerminateThread(m_hMulticast, exitCode);
 
