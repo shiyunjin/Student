@@ -121,6 +121,7 @@ void CMulticastDlg::ShowBmp(MULTICASTDATA &multicastData)
 		CDC* dc = GetDC();
 		if (dc != NULL)
 		{
+			::SetStretchBltMode(dc->m_hDC, STRETCH_HALFTONE); //解决失真问题
 			::StretchDIBits(dc->m_hDC,
 				0,
 				0,
