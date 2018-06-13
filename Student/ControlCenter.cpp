@@ -1,16 +1,15 @@
-/*******************************************************************
-FileName: ControlCenter.cpp
-Desc	: ½ÓÊÕÀ´×Ô½ÌÊ¦»úµÄÏûÏ¢²¢½øĞĞ·ÖÅä´¦Àí
-*******************************************************************/
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "ControlCenter.h"
 #include "StuInfo.h"
 
+
 /******************************************************************
 Function	: CControlCenter
-Parameter	: stuInfo--×Ô¶¨Òå½á¹¹Ìå£¬Ñ§ÉúµÄĞÅÏ¢
-Return		: ÎŞ
-Desc		: ¹¹Ôì·½·¨
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:27
+Parameter	: stuInfo--è‡ªå®šä¹‰ç»“æ„ä½“ï¼Œå­¦ç”Ÿçš„ä¿¡æ¯
+Return		: 
+Desc		: æ„é€ æ–¹æ³•
 ******************************************************************/
 CControlCenter::CControlCenter(STUINFODATA stuInfo)
 : m_port(0)
@@ -33,11 +32,13 @@ CControlCenter::~CControlCenter()
 	DeletepMulticastDlg();
 }
 
+
 /******************************************************************
 Function	: DeletepMulticastDlg
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:27
 Return		: void
-Desc		: ÊÍ·Ånew ·ÖÅäµÄÄÚ´æ
+Desc		: é‡Šæ”¾new åˆ†é…çš„å†…å­˜
 ******************************************************************/
 void CControlCenter::DeletepMulticastDlg()
 {
@@ -48,11 +49,13 @@ void CControlCenter::DeletepMulticastDlg()
 	}
 }
 
+
 /******************************************************************
 Function	: DeleteSocketMulticast
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:27
 Return		: void
-Desc		: ¹Ø±ÕSOCKET Á¬½Ó
+Desc		: å…³é—­SOCKET è¿æ¥
 ******************************************************************/
 void CControlCenter::DeleteSocketMulticast()
 {
@@ -63,11 +66,13 @@ void CControlCenter::DeleteSocketMulticast()
 	}
 }
 
+
 /******************************************************************
 Function	: DeletepScreenMonitor
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:27
 Return		: void
-Desc		: ÊÍ·Ånew ·ÖÅäµÄÄÚ´æ
+Desc		: é‡Šæ”¾new åˆ†é…çš„å†…å­˜
 ******************************************************************/
 void CControlCenter::DeletepScreenMonitor()
 {
@@ -78,11 +83,13 @@ void CControlCenter::DeletepScreenMonitor()
 	}
 }
 
+
 /******************************************************************
 Function	: DeleteSocketMsg
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:27
 Return		: void
-Desc		: ¹Ø±ÕSOCKET Á¬½Ó
+Desc		: å…³é—­SOCKET è¿æ¥
 ******************************************************************/
 void CControlCenter::DeleteSocketMsg()
 {
@@ -93,12 +100,15 @@ void CControlCenter::DeleteSocketMsg()
 	}
 }
 
+
 /******************************************************************
 Function	: SetConnectInfo
-Parameter	: IP--IPµØÖ·
-port--¶Ë¿ÚºÅ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:28
+Parameter	: IP--IPåœ°å€
+Parameter	: port--ç«¯å£å·
 Return		: void
-Desc		: ÉèÖÃIP µØÖ·ºÍ¶Ë¿ÚµÄĞÅÏ¢
+Desc		: è®¾ç½®IP åœ°å€å’Œç«¯å£çš„ä¿¡æ¯
 ******************************************************************/
 void CControlCenter::SetConnectInfo(char* IP, int port)
 {
@@ -106,11 +116,13 @@ void CControlCenter::SetConnectInfo(char* IP, int port)
 	m_port = port;
 }
 
+
 /******************************************************************
 Function	: ConnectClient
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:28
 Return		: void
-Desc		: Á¬½Ó½ÌÊ¦»ú£¬µÃµ½SOCKET
+Desc		: è¿æ¥æ•™å¸ˆæœºï¼Œå¾—åˆ°SOCKET
 ******************************************************************/
 void CControlCenter::ConnectClient()
 {
@@ -143,15 +155,17 @@ void CControlCenter::ConnectClient()
 	RecvRequest();
 }
 
+
 /******************************************************************
 Function	: RecvRequest
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:28
 Return		: void
-Desc		: ²»¶Ï¼àÌıÀ´´¦½ÌÊ¦»úµÄÇëÇó
+Desc		: ä¸æ–­ç›‘å¬æ¥å¤„æ•™å¸ˆæœºçš„è¯·æ±‚
 ******************************************************************/
 void CControlCenter::RecvRequest()
 {
-	// ¼àÌı½ÌÊ¦»ú¹ã²¥µÄSOCKET£¨IP ×é²¥¼¼Êõ£©
+	// ç›‘å¬æ•™å¸ˆæœºå¹¿æ’­çš„SOCKETï¼ˆIP ç»„æ’­æŠ€æœ¯ï¼‰
 	m_socketMulticast = m_socketCenter.InitMulticastSocket(MULTICAST_TRANS_PORT,
 		MULTICAST_IP);
 
@@ -160,7 +174,7 @@ void CControlCenter::RecvRequest()
 	{
 		
 		memset(&msgType, 0, sizeof(MSGTYPE));
-		// ²»¶Ï¼àÌıÀ´×Ô¿Í»§¶ËµÄÇëÇó
+		// ä¸æ–­ç›‘å¬æ¥è‡ªå®¢æˆ·ç«¯çš„è¯·æ±‚
 		int result = m_socketCenter.RecvDataTCP(m_socketMsg,
 			(char*)&msgType, sizeof(MSGTYPE));
 		if (result == SOCKET_ERROR) {
@@ -178,11 +192,14 @@ void CControlCenter::RecvRequest()
 	}
 }
 
+
 /******************************************************************
 Function	: ExecuteRequest
-Parameter	: msgType--×Ô¶¨Òå½á¹¹Ìå£¬ÏûÏ¢µÄĞÅÏ¢
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:29
+Parameter	: msgType--è‡ªå®šä¹‰ç»“æ„ä½“ï¼Œæ¶ˆæ¯çš„ä¿¡æ¯
 Return		: void
-Desc		: Ö´ĞĞ½ÓÊÕµ½µÄÇëÇó
+Desc		: æ‰§è¡Œæ¥æ”¶åˆ°çš„è¯·æ±‚
 ******************************************************************/
 void CControlCenter::ExecuteRequest(MSGTYPE msgType)
 {
@@ -209,11 +226,13 @@ void CControlCenter::ExecuteRequest(MSGTYPE msgType)
 	}
 }
 
+
 /******************************************************************
 Function	: BeginMulticast
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:29
 Return		: void
-Desc		: ½ÓÊÕÀ´×Ô½ÌÊ¦»úµÄÆÁÄ»Í¼ÏñÊı¾İ²¢µ÷ÓÃÏÔÊ¾·½·¨
+Desc		: æ¥æ”¶æ¥è‡ªæ•™å¸ˆæœºçš„å±å¹•å›¾åƒæ•°æ®å¹¶è°ƒç”¨æ˜¾ç¤ºæ–¹æ³•
 ******************************************************************/
 void CControlCenter::BeginMulticast()
 {
@@ -227,11 +246,14 @@ void CControlCenter::BeginMulticast()
 		(LPVOID)m_pMulticastDlg, 0, NULL);
 }
 
+
 /******************************************************************
 Function	: OnBeginMulticast
-Parameter	: self--CMulticast Àà¶ÔÏó
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:29
+Parameter	: self--CMulticast ç±»å¯¹è±¡
 Return		: DWORD WINAPI
-Desc		: ½ÌÊ¦»ú¹ã²¥Ïß³ÌÔËĞĞ·½·¨
+Desc		: æ•™å¸ˆæœºå¹¿æ’­çº¿ç¨‹è¿è¡Œæ–¹æ³•
 ******************************************************************/
 DWORD WINAPI CControlCenter::OnBeginMulticast(LPVOID self)
 {
@@ -241,11 +263,14 @@ DWORD WINAPI CControlCenter::OnBeginMulticast(LPVOID self)
 	return 0;
 }
 
+
 /******************************************************************
 Function	: OnShowMulticastDlg
-Parameter	: self--CMulticastDlg Àà¶ÔÏó
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:29
+Parameter	: self--CMulticastDlg ç±»å¯¹è±¡
 Return		: DWORD WINAPI
-Desc		: ÏÔÊ¾½ÌÊ¦»ú¹ã²¥Ä£Ì¬¶Ô»°¿òµÄÏß³ÌÔËĞĞ·½·¨
+Desc		: æ˜¾ç¤ºæ•™å¸ˆæœºå¹¿æ’­æ¨¡æ€å¯¹è¯æ¡†çš„çº¿ç¨‹è¿è¡Œæ–¹æ³•
 ******************************************************************/
 DWORD WINAPI CControlCenter::OnShowMulticastDlg(LPVOID self)
 {
@@ -256,19 +281,21 @@ DWORD WINAPI CControlCenter::OnShowMulticastDlg(LPVOID self)
 	return 0;
 }
 
+
 /******************************************************************
 Function	: EndMulticast
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:29
 Return		: void
-Desc		: Í£Ö¹½ÓÊÕÀ´×Ô½ÌÊ¦»úµÄÆÁÄ»Í¼ÏñÊı¾İ
-to-do       : Ïß³Ì»áÉÏÃæSOCKET µÄRecvFrom ÉÏ¶øµ¼ÖÂÏß³ÌÎŞ·¨½áÊø
+Desc		: åœæ­¢æ¥æ”¶æ¥è‡ªæ•™å¸ˆæœºçš„å±å¹•å›¾åƒæ•°æ®
+to-do       : çº¿ç¨‹ä¼šä¸Šé¢SOCKET çš„RecvFrom ä¸Šè€Œå¯¼è‡´çº¿ç¨‹æ— æ³•ç»“æŸ
 ******************************************************************/
 void CControlCenter::EndMulticast()
 {
 	now_cast = false;
 	m_pMulticastDlg->SetIsMulticastStop(true);
 	DWORD exitCode = 0;
-	// ¹Ø±ÕÄ£Ì¬¶Ô»°¿ò
+	// å…³é—­æ¨¡æ€å¯¹è¯æ¡†
 	m_pMulticastDlg->CloseModalDlg();
 
 	GetExitCodeThread(m_hMulticast, &exitCode);
@@ -287,11 +314,13 @@ void CControlCenter::EndMulticast()
 	//	m_pMulticastDlg = NULL;
 }
 
+
 /******************************************************************
-Function	: BeginScreenBmpData
-Parameter	: ÎŞ
+Function	: BeginScreenMonitor
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:31
 Return		: void
-Desc		: ·¢ËÍµ±Ç°»ú×ÓµÄÆÁÄ»Í¼ÏñÊı¾İµ½½ÌÊ¦»ú
+Desc		: å‘é€å½“å‰æœºå­çš„å±å¹•å›¾åƒæ•°æ®åˆ°æ•™å¸ˆæœº
 ******************************************************************/
 void CControlCenter::BeginScreenMonitor()
 {
@@ -303,11 +332,14 @@ void CControlCenter::BeginScreenMonitor()
 		(LPVOID)m_pScreenMonitor, 0, NULL));
 }
 
+
 /******************************************************************
 Function	: OnBeginScreenMonitor
-Parameter	: self--CScreenMonitor Àà¶ÔÏó
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:31
+Parameter	: self--CScreenMonitor ç±»å¯¹è±¡
 Return		: DWORD WINAPI
-Desc		: Ñ§Éú»úÆÁÄ»¼à¿ØÏß³ÌÔËĞĞ·½·¨
+Desc		: å­¦ç”Ÿæœºå±å¹•ç›‘æ§çº¿ç¨‹è¿è¡Œæ–¹æ³•
 ******************************************************************/
 DWORD WINAPI CControlCenter::OnBeginScreenMonitor(LPVOID self)
 {
@@ -316,11 +348,13 @@ DWORD WINAPI CControlCenter::OnBeginScreenMonitor(LPVOID self)
 	return 0;
 }
 
+
 /******************************************************************
 Function	: EndScreenMonitor
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:31
 Return		: void
-Desc		: Í£Ö¹·¢ËÍ±¾»úµÄÆÁÄ»Í¼ÏñÊı¾İµ½½ÌÊ¦»ú
+Desc		: åœæ­¢å‘é€æœ¬æœºçš„å±å¹•å›¾åƒæ•°æ®åˆ°æ•™å¸ˆæœº
 ******************************************************************/
 void CControlCenter::EndScreenMonitor()
 {
@@ -338,11 +372,13 @@ void CControlCenter::EndScreenMonitor()
 // 	m_pScreenMonitor = NULL;
 }
 
+
 /******************************************************************
 Function	: SendStuInfo
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:31
 Return		: void
-Desc		: ·¢ËÍµÇÂ¼µÄÑ§ÉúµÄĞÅÏ¢µ½½ÌÊ¦¶Ë
+Desc		: å‘é€ç™»å½•çš„å­¦ç”Ÿçš„ä¿¡æ¯åˆ°æ•™å¸ˆç«¯
 ******************************************************************/
 void CControlCenter::SendStuInfo()
 {

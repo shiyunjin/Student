@@ -1,9 +1,4 @@
-/******************************************************************* 
-FileName: ScreenMonitor.cpp
-Desc	: ÆÁÄ»¼à¿ØÀà£¬ÊµÏÖÆÁÄ»¼à¿ØÏà¹Ø·½·¨£¬°üÀ¨ÆÁÄ»Í¼ÏñÊı¾İµÄ´«Êä
-		  »ñÈ¡µÈ
-*******************************************************************/ 
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "ScreenMonitor.h"
 #include <math.h>
 
@@ -27,11 +22,13 @@ void CScreenMonitor::CleanData()
 	DeletepBmpTransData();
 }
 
+
 /******************************************************************
 Function	: DeletepBmpTransData
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:22
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ
+Desc		: é‡Šæ”¾new çš„å†…å­˜
 ******************************************************************/
 void CScreenMonitor::DeletepBmpTransData()
 {
@@ -42,11 +39,13 @@ void CScreenMonitor::DeletepBmpTransData()
 	}
 }
 
+
 /******************************************************************
 Function	: DeletepBitMapInfo
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:23
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ
+Desc		: é‡Šæ”¾new çš„å†…å­˜
 ******************************************************************/
 void CScreenMonitor::DeletepBitMapInfo()
 {
@@ -57,11 +56,14 @@ void CScreenMonitor::DeletepBitMapInfo()
 	}
 }
 
+
 /******************************************************************
 Function	: SetSocketMsg
-Parameter	: socketMsg--Á¬½Ó½ÌÊ¦»úµÄSOCKET
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:23
+Parameter	: socketMsg--è¿æ¥æ•™å¸ˆæœºçš„SOCKET
 Return		: void
-Desc		: ¸øÀà³ÉÔ±SOCKET ¸³Öµ
+Desc		: ç»™ç±»æˆå‘˜SOCKET èµ‹å€¼
 ******************************************************************/
 void CScreenMonitor::SetSocketMsg(SOCKET socketMsg)
 {
@@ -69,24 +71,26 @@ void CScreenMonitor::SetSocketMsg(SOCKET socketMsg)
 	// 	m_socketScreen = socketScreen;
 }
 
+
 /******************************************************************
 Function	: GetDeskScreeData
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:23
 Return		: void
-Desc		: »ñµÃ×ÀÃæµÄÍ¼ÏñÊı¾İ²¢µ÷ÓÃÑ¹Ëõ·½·¨
+Desc		: è·å¾—æ¡Œé¢çš„å›¾åƒæ•°æ®å¹¶è°ƒç”¨å‹ç¼©æ–¹æ³•
 ******************************************************************/
 void CScreenMonitor::GetDeskScreeData()
 {
-	CDC memDC; //¶¨ÒåÒ»¸öÄÚ´æ»­²¼
+	CDC memDC; //å®šä¹‰ä¸€ä¸ªå†…å­˜ç”»å¸ƒ
 	CBitmap bmp;
 	BITMAP bitmap;
 	this->GetDeskScreenDC(memDC, bmp, bitmap);
 
 	this->SetCursorIcon(memDC);
 
-	// ±£´æÔ­Ê¼×ÀÃæÍ¼ÏñÊı¾İµÄÊı×é
+	// ä¿å­˜åŸå§‹æ¡Œé¢å›¾åƒæ•°æ®çš„æ•°ç»„
 	BYTE* pBmpOriginData = new BYTE[m_imgTotalSize];
-	// ½«Í¼ÏñµÄÊı¾İ¿½±´µ½pBmpOriginalData ÖĞ
+	// å°†å›¾åƒçš„æ•°æ®æ‹·è´åˆ°pBmpOriginalData ä¸­
 	if (::GetDIBits(memDC.m_hDC, bmp, 0, bitmap.bmHeight,
 		pBmpOriginData, m_pBitMapInfo, DIB_RGB_COLORS) == 0)
 	{
@@ -96,18 +100,21 @@ void CScreenMonitor::GetDeskScreeData()
 		return;
 	}
 
-	// Ñ¹ËõÍ¼ÏñÊı¾İ
+	// å‹ç¼©å›¾åƒæ•°æ®
 	this->CompressBmpData(pBmpOriginData);
 	this->DeletepBmpOriginData(pBmpOriginData);
 	DeleteDC(memDC);
 	DeleteObject(bmp);
 }
 
+
 /******************************************************************
 Function	: DeletepBmpOriginData
-Parameter	: pBmpOriginData--½«Òª±»ÊÍ·ÅµÄÖ¸Õë
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:23
+Parameter	: pBmpOriginData--å°†è¦è¢«é‡Šæ”¾çš„æŒ‡é’ˆ
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ
+Desc		: é‡Šæ”¾new çš„å†…å­˜
 ******************************************************************/
 void CScreenMonitor::DeletepBmpOriginData(BYTE* pBmpOriginData)
 {
@@ -118,22 +125,27 @@ void CScreenMonitor::DeletepBmpOriginData(BYTE* pBmpOriginData)
 	}
 }
 
+
 /******************************************************************
 Function	: GetDeskScreenDC
-Parameter	: memDC--CDCÀà  bmp--Î»Í¼   bitmap--Î»Í¼½á¹¹Ìå
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:23
+Parameter	: memDC--CDCç±»
+Parameter	: bmp--ä½å›¾
+Parameter	: bitmap--ä½å›¾ç»“æ„ä½“
 Return		: void
-Desc		: »ñµÃ×ÀÃæÍ¼Ïñ
+Desc		: è·å¾—æ¡Œé¢å›¾åƒ
 ******************************************************************/
 void CScreenMonitor::GetDeskScreenDC(CDC &memDC, CBitmap &bmp, BITMAP &bitmap)
 {
-	CDC* pDeskDC = CWnd::GetDesktopWindow()->GetDC(); //»ñÈ¡×ÀÃæ»­²¼¶ÔÏó
-	int width = GetSystemMetrics(SM_CXSCREEN); //»ñÈ¡ÆÁÄ»µÄ¿í¶È
-	int height = GetSystemMetrics(SM_CYSCREEN); //»ñÈ¡ÆÁÄ»µÄ¸ß¶È
+	CDC* pDeskDC = CWnd::GetDesktopWindow()->GetDC(); //è·å–æ¡Œé¢ç”»å¸ƒå¯¹è±¡
+	int width = GetSystemMetrics(SM_CXSCREEN); //è·å–å±å¹•çš„å®½åº¦
+	int height = GetSystemMetrics(SM_CYSCREEN); //è·å–å±å¹•çš„é«˜åº¦
 
-	memDC.CreateCompatibleDC(pDeskDC); //´´½¨Ò»¸ö¼æÈİµÄ»­²¼
+	memDC.CreateCompatibleDC(pDeskDC); //åˆ›å»ºä¸€ä¸ªå…¼å®¹çš„ç”»å¸ƒ
 
-	bmp.CreateCompatibleBitmap(pDeskDC, width, height); //´´½¨¼æÈİÎ»Í¼
-	memDC.SelectObject(&bmp); //Ñ¡ÖĞÎ»Í¼¶ÔÏó
+	bmp.CreateCompatibleBitmap(pDeskDC, width, height); //åˆ›å»ºå…¼å®¹ä½å›¾
+	memDC.SelectObject(&bmp); //é€‰ä¸­ä½å›¾å¯¹è±¡
 
 	bmp.GetBitmap(&bitmap);
 	memDC.BitBlt(0, 0, width, height, pDeskDC, 0, 0, SRCCOPY);
@@ -143,19 +155,22 @@ void CScreenMonitor::GetDeskScreenDC(CDC &memDC, CBitmap &bmp, BITMAP &bitmap)
 	pDeskDC->DeleteDC();
 }
 
+
 /******************************************************************
 Function	: SetCursorIcon
-Parameter	: memDC--CDCÀà
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:24
+Parameter	: memDC--CDCç±»
 Return		: void
-Desc		: »ñµÃÊó±êĞÅÏ¢²¢»æÖÆµ½×ÀÃæÍ¼ÏñÖĞ
+Desc		: è·å¾—é¼ æ ‡ä¿¡æ¯å¹¶ç»˜åˆ¶åˆ°æ¡Œé¢å›¾åƒä¸­
 ******************************************************************/
 void CScreenMonitor::SetCursorIcon(CDC &memDC)
 {
-	//»ñÈ¡µ±Ç°¹â±ê¼°ÆäÎ»ÖÃ
+	//è·å–å½“å‰å…‰æ ‡åŠå…¶ä½ç½®
 	HCURSOR hCursor = GetCursor();
 	POINT ptCursor;
 	GetCursorPos(&ptCursor);
-	//»ñÈ¡¹â±êµÄÍ¼±êÊı¾İ
+	//è·å–å…‰æ ‡çš„å›¾æ ‡æ•°æ®
 	ICONINFO IconInfo;
 	if (GetIconInfo(hCursor, &IconInfo))
 	{
@@ -166,7 +181,7 @@ void CScreenMonitor::SetCursorIcon(CDC &memDC)
 		if (IconInfo.hbmColor != NULL)
 			DeleteObject(IconInfo.hbmColor);
 	}
-	//ÔÚ¼æÈİÉè±¸ÃèÊö±íÉÏ»­³ö¸Ã¹â±ê
+	//åœ¨å…¼å®¹è®¾å¤‡æè¿°è¡¨ä¸Šç”»å‡ºè¯¥å…‰æ ‡
 	DrawIconEx(
 		memDC.m_hDC,         // handle to device context
 		ptCursor.x, ptCursor.y,
@@ -178,11 +193,13 @@ void CScreenMonitor::SetCursorIcon(CDC &memDC)
 		);
 }
 
+
 /******************************************************************
 Function	: SendScreenBmpData
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:24
 Return		: void
-Desc		: ·¢ËÍÆÁÄ»Í¼ÏñÊı¾İµ½½ÌÊ¦»ú
+Desc		: å‘é€å±å¹•å›¾åƒæ•°æ®åˆ°æ•™å¸ˆæœº
 ******************************************************************/
 void CScreenMonitor::SendScreenBmpData()
 {
@@ -190,22 +207,26 @@ void CScreenMonitor::SendScreenBmpData()
 	int count = this->InitBmpData(bmpData);
 	for (int i = 0; i < count; i++)
 	{
-		// Í¨Öª½ÌÊ¦»ú×¼±¸½ÓÊÕÆÁÄ»Í¼ÏñÊı¾İ
+		// é€šçŸ¥æ•™å¸ˆæœºå‡†å¤‡æ¥æ”¶å±å¹•å›¾åƒæ•°æ®
 		m_socketCenter.SendReadyInfo(m_socketMsg, BEGINSCREENMONITOR);
 
 		SetBmpData(bmpData, i, count);
 
-		// ·¢ËÍÍ¼ÏñÊı¾İµ½½ÌÊ¦»ú
+		// å‘é€å›¾åƒæ•°æ®åˆ°æ•™å¸ˆæœº
 		m_socketCenter.SendDataTCP(m_socketMsg, (char*)&bmpData, sizeof(BMPDATA));
 	}
 }
 
+
 /******************************************************************
 Function	: SetBmpData
-Parameter	: bmpData--ĞèÒª±»¸³ÖµµÄBMPDATA ½á¹¹Ìå  i--Ò»·ù×ÀÃæÍ¼ÏñµÄµÚ¼¸´Î´«Êä
-count--Ò»·ù×ÀÃæÍ¼ÏñĞèÒª±»´«ÊäµÄ´ÎÊı
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:25
+Parameter	: bmpData--éœ€è¦è¢«èµ‹å€¼çš„BMPDATA ç»“æ„ä½“
+Parameter	: i--å¹…æ¡Œé¢å›¾åƒçš„ç¬¬å‡ æ¬¡ä¼ è¾“
+Parameter	: count--å¹…æ¡Œé¢å›¾åƒéœ€è¦è¢«ä¼ è¾“çš„æ¬¡æ•°
 Return		: void
-Desc		: ½«ÆÁÄ»Í¼ÏñÊı¾İ¸³Öµµ½BMPDATA ½á¹¹ÌåÖĞ
+Desc		: å°†å±å¹•å›¾åƒæ•°æ®èµ‹å€¼åˆ°BMPDATA ç»“æ„ä½“ä¸­
 ******************************************************************/
 void CScreenMonitor::SetBmpData(BMPDATA &bmpData, int i, int count)
 {
@@ -213,7 +234,7 @@ void CScreenMonitor::SetBmpData(BMPDATA &bmpData, int i, int count)
 	memset(bmpData.screenBmpData, 0, SCREEN_TRANS_SIZE);
 	beginPos = i * SCREEN_TRANS_SIZE;
 	bmpData.beginPos = beginPos;
-	// ·¢ËÍÒ»·ùÆÁÄ»Í¼ÏñµÄ×îºóÒ»¿é
+	// å‘é€ä¸€å¹…å±å¹•å›¾åƒçš„æœ€åä¸€å—
 	if (i == count - 1)
 	{
 		bmpData.isShow = true;
@@ -229,17 +250,20 @@ void CScreenMonitor::SetBmpData(BMPDATA &bmpData, int i, int count)
 	}
 }
 
+
 /******************************************************************
 Function	: InitBmpData
-Parameter	: bmpData--×ÀÃæÍ¼ÏñÊı¾İµÄ½á¹¹Ìå
-Return		: int--Ò»·ù×ÀÃæÍ¼ÏñĞèÒª±»´«ÊäµÄ´ÎÊı
-Desc		: Îª×ÀÃæÍ¼Ïñ½á¹¹ÌåBMPDATA³õÊ¼»¯Ò»Ğ©±ØÒªĞÅÏ¢
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:25
+Parameter	: bmpData--æ¡Œé¢å›¾åƒæ•°æ®çš„ç»“æ„ä½“
+Return		: int--ä¸€å¹…æ¡Œé¢å›¾åƒéœ€è¦è¢«ä¼ è¾“çš„æ¬¡æ•°
+Desc		: ä¸ºæ¡Œé¢å›¾åƒç»“æ„ä½“BMPDATAåˆå§‹åŒ–ä¸€äº›å¿…è¦ä¿¡æ¯
 ******************************************************************/
 int CScreenMonitor::InitBmpData(BMPDATA &bmpData)
 {
 	memset(&bmpData, 0, sizeof(BMPDATA));
-	// infoType = 1 ·¢ËÍµÄ²»ÊÇÒ»·ù×ÀÃæÍ¼ÏñµÄ×îºóÒ»¿é
-	// infoType = 2 ·¢ËÍµÄÊÇÒ»·ù×ÀÃæÍ¼ÏñµÄ×îºóµØ¿é
+	// infoType = 1 å‘é€çš„ä¸æ˜¯ä¸€å¹…æ¡Œé¢å›¾åƒçš„æœ€åä¸€å—
+	// infoType = 2 å‘é€çš„æ˜¯ä¸€å¹…æ¡Œé¢å›¾åƒçš„æœ€ååœ°å—
 	bmpData.infoType = 1;
 	int count = int(ceil(double(m_compressBmpDataLen) / SCREEN_TRANS_SIZE));
 
@@ -250,12 +274,14 @@ int CScreenMonitor::InitBmpData(BMPDATA &bmpData)
 	return count;
 }
 
+
 /******************************************************************
 Function	: SetIsScreenMonitorEnd
-Parameter	: isScreenMonitorEnd
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:25
+Parameter	: isScreenMonitorEnd--trueè¿è¡Œçº¿ç¨‹ï¼Œfalseåœæ­¢çº¿ç¨‹
 Return		: void
-Desc		: ·¢ËÍÍ¼ÏñÊı¾İµ½½ÌÊ¦»úµÄÏß³ÌÊÇ·ñ½áÊøµÄ±êÖ¾
-isScreenMonitorEnd--trueÔËĞĞÏß³Ì£¬falseÍ£Ö¹Ïß³Ì
+Desc		: å‘é€å›¾åƒæ•°æ®åˆ°æ•™å¸ˆæœºçš„çº¿ç¨‹æ˜¯å¦ç»“æŸçš„æ ‡å¿—
 ******************************************************************/
 void CScreenMonitor::SetIsScreenMonitorEnd(bool isScreenMonitorEnd)
 {
@@ -263,11 +289,13 @@ void CScreenMonitor::SetIsScreenMonitorEnd(bool isScreenMonitorEnd)
 	m_isScreenMonitorEnd = isScreenMonitorEnd;
 }
 
+
 /******************************************************************
 Function	: SendScreenData
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:26
 Return		: void
-Desc		: ²»¶Ï·¢ËÍÊı¾İµ½½ÌÊ¦»ú
+Desc		: ä¸æ–­å‘é€æ•°æ®åˆ°æ•™å¸ˆæœº
 ******************************************************************/
 void CScreenMonitor::SendScreenData()
 {
@@ -281,19 +309,22 @@ void CScreenMonitor::SendScreenData()
 	CleanData();
 }
 
+
 /******************************************************************
 Function	: CompressBmpData
-Parameter	: pBmpOriginalData--×ÀÃæÍ¼ÏñµÄÊı¾İ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:26
+Parameter	: pBmpOriginalData--æ¡Œé¢å›¾åƒçš„æ•°æ®
 Return		: void
-Desc		: Ê¹ÓÃZLIB ¿âÑ¹Ëõ×ÀÃæÍ¼ÏñÊı¾İ
+Desc		: ä½¿ç”¨ZLIB åº“å‹ç¼©æ¡Œé¢å›¾åƒæ•°æ®
 ******************************************************************/
 void CScreenMonitor::CompressBmpData(BYTE* pBmpOriginalData)
 {
-	// ĞèÒªÒ»¸ö×ã¹»´óµÄ¿Õ¼ä
+	// éœ€è¦ä¸€ä¸ªè¶³å¤Ÿå¤§çš„ç©ºé—´
 	m_compressBmpDataLen = (uLongf)((m_imgTotalSize + 12)*(100.1 / 100)) + 1;
 
 	BYTE* pCompressData = new BYTE[m_compressBmpDataLen];
-	// ½«×ÀÃæÍ¼ÏñÊı¾İÑ¹Ëõµ½pCompressData ÖĞ
+	// å°†æ¡Œé¢å›¾åƒæ•°æ®å‹ç¼©åˆ°pCompressData ä¸­
 	int err = compress(pCompressData, &m_compressBmpDataLen,
 		pBmpOriginalData, m_imgTotalSize);
 
@@ -306,24 +337,28 @@ void CScreenMonitor::CompressBmpData(BYTE* pBmpOriginalData)
 		m_pBmpTransData = NULL;
 	}
 
-	// ½«Ñ¹ËõºóµÄÊı¾İ±£´æµ½m_pBmpTransData ÖĞ
+	// å°†å‹ç¼©åçš„æ•°æ®ä¿å­˜åˆ°m_pBmpTransData ä¸­
 	m_pBmpTransData = new BYTE[m_compressBmpDataLen];
 	memcpy(m_pBmpTransData, pCompressData, m_compressBmpDataLen);
 	delete[] pCompressData;
 	pCompressData = NULL;
 }
 
+
 /******************************************************************
 Function	: InitBITMAPINFO
-Parameter	: bitmap--Í¼ÏñµÄ´óĞ¡µÈĞÅÏ¢  height--×ÀÃæµÄ¸ß
-width--×ÀÃæµÄ¿í
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:26
+Parameter	: bitmap--å›¾åƒçš„å¤§å°ç­‰ä¿¡æ¯
+Parameter	: height--æ¡Œé¢çš„é«˜
+Parameter	: width--æ¡Œé¢çš„å®½
 Return		: void
-Desc		: ³õÊ¼»¯Í¼ÏñµÄĞÅÏ¢Í·½á¹¹Ìå BITMAPINFO
+Desc		: åˆå§‹åŒ–å›¾åƒçš„ä¿¡æ¯å¤´ç»“æ„ä½“ BITMAPINFO
 ******************************************************************/
 void CScreenMonitor::InitBITMAPINFO(BITMAP &bitmap, int height, int width)
 {
-	double paletteSize = 0; //¼ÇÂ¼µ÷É«°å´óĞ¡
-	if (bitmap.bmBitsPixel < 16) //ÅĞ¶ÏÊÇ·ñÎªÕæ²ÊÉ«Î»Í¼
+	double paletteSize = 0; //è®°å½•è°ƒè‰²æ¿å¤§å°
+	if (bitmap.bmBitsPixel < 16) //åˆ¤æ–­æ˜¯å¦ä¸ºçœŸå½©è‰²ä½å›¾
 	{
 		paletteSize = (1 << bitmap.bmBitsPixel)*sizeof(RGBQUAD);
 	}

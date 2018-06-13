@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <stdio.h>
 #include "Comment.h"
 #include "SocketCenter.h"
@@ -45,12 +45,12 @@ public:
 
 	static DWORD WINAPI OnShowMulticastDlg(LPVOID self);
 private:
-	// Á¬½Ó½ÌÊ¦»úµÄSOCKET£¬ÓÃÓÚÏûÏ¢µÄ´«Êä
+	// è¿æ¥æ•™å¸ˆæœºçš„SOCKETï¼Œç”¨äºæ¶ˆæ¯çš„ä¼ è¾“
 	SOCKET m_socketMsg;
 	CSocketCenter m_socketCenter;
-	// IP µØÖ·
+	// IP åœ°å€
 	char m_IP[MAX_PATH];
-	// SOCKET Á¬½ÓµÄ¶Ë¿ÚºÅ
+	// SOCKET è¿æ¥çš„ç«¯å£å·
 	int m_port;
 	CScreenMonitor* m_pScreenMonitor;
 	CMulticastDlg* m_pMulticastDlg;

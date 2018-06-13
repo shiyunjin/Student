@@ -1,27 +1,27 @@
-#pragma once
+ï»¿#pragma once
 #include "resource.h"
 #include "SocketCenter.h"
-// zlib¿â ĞèÒªÊ¹ÓÃÆäÖĞµÄÑ¹ËõÍ¼Æ¬¹¦ÄÜ
+// zlibåº“ éœ€è¦ä½¿ç”¨å…¶ä¸­çš„å‹ç¼©å›¾ç‰‡åŠŸèƒ½
 #include "zlib.h"
 #include "zconf.h"
 #pragma comment(lib,"zlib.lib")
-// CMulticastDlg ¶Ô»°¿ò
+// CMulticastDlg å¯¹è¯æ¡†
 
 class CMulticastDlg : public CDialogEx
 	{
 	DECLARE_DYNAMIC(CMulticastDlg)
 
 public:
-	CMulticastDlg(sockaddr_in addr, /*SOCKET socket = 0,*/ SOCKET socketMulticast = 0, CWnd* pParent = NULL);   // ±ê×¼¹¹Ôìº¯Êı
+	CMulticastDlg(sockaddr_in addr, /*SOCKET socket = 0,*/ SOCKET socketMulticast = 0, CWnd* pParent = NULL);   // æ ‡å‡†æ„é€ å‡½æ•°
 	CMulticastDlg(CWnd* pParent = NULL);
 //	CMulticastDlg(CWnd* pParent = NULL, SOCKET socketMulticast = 0);
 	virtual ~CMulticastDlg();
 
-// ¶Ô»°¿òÊı¾İ
+// å¯¹è¯æ¡†æ•°æ®
 	enum { IDD = IDD_MULTICAST };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV æ”¯æŒ
 
 	DECLARE_MESSAGE_MAP()
 private:

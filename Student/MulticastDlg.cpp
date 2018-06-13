@@ -1,11 +1,7 @@
-/*******************************************************************
-FileName: MulticastDlg.cpp
-Desc	: ÆÁÄ»¹ã²¥¶Ô»°¿òÀà£¬ÊµÏÖÏÔÊ¾¶Ô»°¿ò£¬»ñµÃÆÁÄ»Í¼ÏñÊı¾İÒÔ¼°Êı¾İµÄ·¢ËÍµÈ
-*******************************************************************/
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "MulticastDlg.h"
 
-// CMulticastDlg ¶Ô»°¿ò
+// CMulticastDlg å¯¹è¯æ¡†
 
 IMPLEMENT_DYNAMIC(CMulticastDlg, CDialogEx)
 
@@ -22,9 +18,9 @@ CMulticastDlg::CMulticastDlg(sockaddr_in addr, SOCKET socketMulticast, CWnd* pPa
 	, m_isMulticastStop(false)
 	, m_pBmpTransData(NULL)
 {
-	// 	// ¼ì²âÊÇ·ñÓĞÄÚ´æĞ¹Â¶
+	// 	// æ£€æµ‹æ˜¯å¦æœ‰å†…å­˜æ³„éœ²
 	// 	_CrtDumpMemoryLeaks();
-	// 	// ÄÚ´æĞ¹Â¶µÄÎ»ÖÃ
+	// 	// å†…å­˜æ³„éœ²çš„ä½ç½®
 	// 	_CrtSetBreakAlloc(919);
 }
 
@@ -45,39 +41,46 @@ BEGIN_MESSAGE_MAP(CMulticastDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 END_MESSAGE_MAP()
 
-// CMulticastDlg ÏûÏ¢´¦Àí³ÌĞò
+// CMulticastDlg æ¶ˆæ¯å¤„ç†ç¨‹åº
+
 /******************************************************************
 Function	: SetIsMulticastStop
-Parameter	: isMulticastStop--½ÓÊÕ½ÌÊ¦»úÆÁÄ»Í¼ÏñÊı¾İÍ£Ö¹µÄ±êÖ¾
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:32
+Parameter	: isMulticastStop--æ¥æ”¶æ•™å¸ˆæœºå±å¹•å›¾åƒæ•°æ®åœæ­¢çš„æ ‡å¿—
 Return		: void
-Desc		: m_isMulticastStop--true ¼ÌĞø½ÓÊÕ½ÌÊ¦»úÆÁÄ»Í¼ÏñÊı¾İ
-m_isMulticastStop--false ½ÓÊÕ½ÌÊ¦»úÆÁÄ»Í¼ÏñÊı¾İÏß³Ì½áÊø
+Desc		: æ ‡è®°æ˜¯å¦ç»§ç»­æ¥å—æ•™å¸ˆæœºå±å¹•å›¾åƒæ•°æ®
 ******************************************************************/
 void CMulticastDlg::SetIsMulticastStop(bool isMulticastStop)
 {
 	m_isMulticastStop = isMulticastStop;
 }
 
+
 /******************************************************************
 Function	: SetSocketMulticast
-Parameter	: socketMulticast--Á¬½Ó½ÌÊ¦»úµÄ¹ã²¥ SOCKET
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:33
+Parameter	: socketMulticast--è¿æ¥æ•™å¸ˆæœºçš„å¹¿æ’­ SOCKET
 Return		: void
-Desc		: ¸ø¹ã²¥SOCKET ¸³Öµ
+Desc		: ç»™å¹¿æ’­SOCKET èµ‹å€¼
 ******************************************************************/
 void CMulticastDlg::SetSocketMulticast(SOCKET socketMulticast)
 {
 	m_socketMulticast = socketMulticast;
 }
 
+
 /******************************************************************
 Function	: SetScreenData
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:33
 Return		: void
-Desc		: ½ÓÊÕ½ÌÊ¦»ú·¢À´µÄÆÁÄ»Í¼ÏñÊı¾İ²¢µ÷ÓÃÏÔÊ¾·½·¨
+Desc		: æ¥æ”¶æ•™å¸ˆæœºå‘æ¥çš„å±å¹•å›¾åƒæ•°æ®å¹¶è°ƒç”¨æ˜¾ç¤ºæ–¹æ³•
 ******************************************************************/
 void CMulticastDlg::SetScreenData()
 {
-	// ½ÓÊÕµ½½ÌÊ¦»úµÄÒ»·ùÆÁÄ»Í¼ÏñÊı¾İµÄµÚ¼¸¿éµÄĞòºÅ
+	// æ¥æ”¶åˆ°æ•™å¸ˆæœºçš„ä¸€å¹…å±å¹•å›¾åƒæ•°æ®çš„ç¬¬å‡ å—çš„åºå·
 	int id = 0;
 	while (false == m_isMulticastStop)
 	{
@@ -89,14 +92,14 @@ void CMulticastDlg::SetScreenData()
 
 		switch (multicastData.infoType)
 		{
-		case 1: // Î»Í¼Êı¾İĞÅÏ¢
+		case 1: // ä½å›¾æ•°æ®ä¿¡æ¯
 			SetBmpTransDataNotLast(multicastData, id);
 			break;
-		case 2: // ½ÓÊÕ×îºóÒ»´Î·¢ËÍµÄÊı¾İ
+		case 2: // æ¥æ”¶æœ€åä¸€æ¬¡å‘é€çš„æ•°æ®
 			SetBmpTransDataLast(multicastData, id);
 			break;
 		default:
-			MessageBox(_T("Î´ÖªµÄÍ¼ÏñÊı¾İĞÅÏ¢"), _T("ÌáÊ¾"), MB_OK);
+			MessageBox(_T("æœªçŸ¥çš„å›¾åƒæ•°æ®ä¿¡æ¯"), _T("æç¤º"), MB_OK);
 			CleanData();
 			exit(1);
 		}
@@ -105,15 +108,18 @@ void CMulticastDlg::SetScreenData()
 //	CleanData();
 }
 
+
 /******************************************************************
 Function	: ShowBmp
-Parameter	: multicastData--ÆÁÄ»Í¼ÏñÊı¾İµÄ½á¹¹Ìå
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:33
+Parameter	: multicastData--å±å¹•å›¾åƒæ•°æ®çš„ç»“æ„ä½“
 Return		: void
-Desc		: ½«½ÓÊÕµ½µÄÀ´×Ô½ÌÊ¦»úµÄÆÁÄ»Í¼ÏñÊı¾İÏÔÊ¾µ½¶Ô»°¿ò
+Desc		: å°†æ¥æ”¶åˆ°çš„æ¥è‡ªæ•™å¸ˆæœºçš„å±å¹•å›¾åƒæ•°æ®æ˜¾ç¤ºåˆ°å¯¹è¯æ¡†
 ******************************************************************/
 void CMulticastDlg::ShowBmp(MULTICASTDATA &multicastData)
 {
-	//ÅĞ¶Ï´«ËÍÍêÒÔºóÊÇ·ñ¿ÉÒÔÏÔÊ¾Í¼Ïñ
+	//åˆ¤æ–­ä¼ é€å®Œä»¥åæ˜¯å¦å¯ä»¥æ˜¾ç¤ºå›¾åƒ
 	if (multicastData.isShow)
 	{
 		BYTE* bmpShowData = UnCompressData(m_pBitMapInfo->bmiHeader.biSizeImage,
@@ -121,7 +127,7 @@ void CMulticastDlg::ShowBmp(MULTICASTDATA &multicastData)
 		CDC* dc = GetDC();
 		if (dc != NULL)
 		{
-			::SetStretchBltMode(dc->m_hDC, STRETCH_HALFTONE); //½â¾öÊ§ÕæÎÊÌâ
+			::SetStretchBltMode(dc->m_hDC, STRETCH_HALFTONE); //è§£å†³å¤±çœŸé—®é¢˜
 			::StretchDIBits(dc->m_hDC,
 				0,
 				0,
@@ -131,8 +137,8 @@ void CMulticastDlg::ShowBmp(MULTICASTDATA &multicastData)
 				0,
 				m_pBitMapInfo->bmiHeader.biWidth,
 				m_pBitMapInfo->bmiHeader.biHeight,
-				bmpShowData, //Î»Í¼Êı¾İ
-				m_pBitMapInfo, //BITMAPINFO Î»Í¼ĞÅÏ¢Í·
+				bmpShowData, //ä½å›¾æ•°æ®
+				m_pBitMapInfo, //BITMAPINFO ä½å›¾ä¿¡æ¯å¤´
 				DIB_RGB_COLORS,
 				SRCCOPY
 				);
@@ -144,12 +150,15 @@ void CMulticastDlg::ShowBmp(MULTICASTDATA &multicastData)
 	}
 }
 
+
 /******************************************************************
 Function	: SetBmpTransDataNotLast
-Parameter	: multicastData--ÆÁÄ»Í¼ÏñÊı¾İµÄ½á¹¹Ìå
-id--Ò»·ùÆÁÄ»Í¼ÏñÊı¾İ´«ÊäË³ĞòµÄĞòºÅ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:34
+Parameter	: multicastData--å±å¹•å›¾åƒæ•°æ®çš„ç»“æ„ä½“
+Parameter	: id--ä¸€å¹…å±å¹•å›¾åƒæ•°æ®ä¼ è¾“é¡ºåºçš„åºå·
 Return		: void
-Desc		: ½ÓÊÕÀ´×Ô½ÌÊ¦»úµÄÆÁÄ»Í¼ÏñÊı¾İ£¨²»ÊÇÒ»·ùÍ¼ÏñµÄ×îºóÒ»´Î£©
+Desc		: æ¥æ”¶æ¥è‡ªæ•™å¸ˆæœºçš„å±å¹•å›¾åƒæ•°æ®ï¼ˆä¸æ˜¯ä¸€å¹…å›¾åƒçš„æœ€åä¸€æ¬¡ï¼‰
 ******************************************************************/
 void CMulticastDlg::SetBmpTransDataNotLast(MULTICASTDATA &multicastData, int& id)
 {
@@ -164,7 +173,7 @@ void CMulticastDlg::SetBmpTransDataNotLast(MULTICASTDATA &multicastData, int& id
 
 		id = 0;
 	}
-	// Èç¹û²»ÏàµÈËµÃ÷Êı¾İ°ü¶ªÊ§ÁË
+	// å¦‚æœä¸ç›¸ç­‰è¯´æ˜æ•°æ®åŒ…ä¸¢å¤±äº†
 	if (id == multicastData.ID)
 	{
 		memcpy_s(m_pBmpTransData + multicastData.beginPos,
@@ -180,12 +189,15 @@ void CMulticastDlg::SetBmpTransDataNotLast(MULTICASTDATA &multicastData, int& id
 	//	return id;
 }
 
+
 /******************************************************************
 Function	: SetBmpTransDataLast
-Parameter	: multicastData--ÆÁÄ»Í¼ÏñÊı¾İµÄ½á¹¹Ìå
-id--Ò»·ùÆÁÄ»Í¼ÏñÊı¾İ´«ÊäË³ĞòµÄĞòºÅ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:34
+Parameter	: multicastData--å±å¹•å›¾åƒæ•°æ®çš„ç»“æ„ä½“
+Parameter	: id--ä¸€å¹…å±å¹•å›¾åƒæ•°æ®ä¼ è¾“é¡ºåºçš„åºå·
 Return		: void
-Desc		: ½ÓÊÕÀ´×Ô½ÌÊ¦»úµÄÆÁÄ»Í¼ÏñÊı¾İ£¨Ò»·ùÍ¼ÏñµÄ×îºóÒ»´Î£©
+Desc		: æ¥æ”¶æ¥è‡ªæ•™å¸ˆæœºçš„å±å¹•å›¾åƒæ•°æ®ï¼ˆä¸€å¹…å›¾åƒçš„æœ€åä¸€æ¬¡ï¼‰
 ******************************************************************/
 void CMulticastDlg::SetBmpTransDataLast(MULTICASTDATA &multicastData, int& id)
 {
@@ -205,11 +217,13 @@ void CMulticastDlg::SetBmpTransDataLast(MULTICASTDATA &multicastData, int& id)
 	}
 }
 
+
 /******************************************************************
 Function	: DeletepBitMapInfo
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:35
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ
+Desc		: é‡Šæ”¾new çš„å†…å­˜
 ******************************************************************/
 void CMulticastDlg::DeletepBitMapInfo()
 {
@@ -220,11 +234,13 @@ void CMulticastDlg::DeletepBitMapInfo()
 	}
 }
 
+
 /******************************************************************
 Function	: DeletepBmpTransData
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:35
 Return		: void
-Desc		: ÊÍ·Ånew µÄÄÚ´æ
+Desc		: é‡Šæ”¾new çš„å†…å­˜
 ******************************************************************/
 void CMulticastDlg::DeletepBmpTransData()
 {
@@ -235,11 +251,13 @@ void CMulticastDlg::DeletepBmpTransData()
 	}
 }
 
+
 /******************************************************************
 Function	: DeleteSocketMulticast
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:35
 Return		: void
-Desc		: ¹Ø±ÕSOCKET Á¬½Ó
+Desc		: å…³é—­SOCKET è¿æ¥
 ******************************************************************/
 void CMulticastDlg::DeleteSocketMulticast()
 {
@@ -250,17 +268,12 @@ void CMulticastDlg::DeleteSocketMulticast()
 	}
 }
 
-/******************************************************************
-Function	: OnSize
-Parameter	:
-Return		: void
-Desc		: ÏìÓ¦WM_SIZE ÏûÏ¢»ñµÃ¶Ô»°¿òµÄ¿Í»§Çø³ß´ç
-******************************************************************/
+
 void CMulticastDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialogEx::OnSize(nType, cx, cy);
 
-	// TODO:  ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌĞò´úÂë
+	// TODO:  åœ¨æ­¤å¤„æ·»åŠ æ¶ˆæ¯å¤„ç†ç¨‹åºä»£ç 
 	GetClientRect(&m_rectClient);
 }
 
@@ -271,41 +284,45 @@ void CMulticastDlg::CleanData()
 	DeletepBitMapInfo();
 }
 
+
 /******************************************************************
 Function	: OnInitDialog
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:36
 Return		: BOOL
-Desc		: ÏìÓ¦WM_InitDialog ÏûÏ¢¶Ô»°¿ò´´½¨ºóµÚÒ»¸öµ÷ÓÃµÄ·½·¨£¬ÈÃ¶Ô»°¿òÈ«ÆÁÏÔÊ¾²¢ÇÒÆÁÄ»
-¹Ø±Õ°´Å¥
+Desc		: å“åº”WM_InitDialog æ¶ˆæ¯å¯¹è¯æ¡†åˆ›å»ºåç¬¬ä¸€ä¸ªè°ƒç”¨çš„æ–¹æ³•ï¼Œè®©å¯¹è¯æ¡†å…¨å±æ˜¾ç¤ºå¹¶ä¸”å±å¹•å…³é—­æŒ‰é’®
 ******************************************************************/
 BOOL CMulticastDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// TODO:  ÔÚ´ËÌí¼Ó¶îÍâµÄ³õÊ¼»¯
-	// ÈÃÄ£Ì¬¶Ô»°¿ò×î´ó»¯ÏÔÊ¾
+	// TODO:  åœ¨æ­¤æ·»åŠ é¢å¤–çš„åˆå§‹åŒ–
+	// è®©æ¨¡æ€å¯¹è¯æ¡†æœ€å¤§åŒ–æ˜¾ç¤º
 	//ShowWindow(SW_MAXIMIZE);
 	ShowWindow(SW_NORMAL);
-	// Ê¹¶Ô»°¿òµÄ¹Ø±Õ°´Å¥ÎŞĞ§
+	// ä½¿å¯¹è¯æ¡†çš„å…³é—­æŒ‰é’®æ— æ•ˆ
 	CMenu *pSysMenu = GetSystemMenu(FALSE);
 	ASSERT(pSysMenu != NULL);
 	pSysMenu->EnableMenuItem(SC_CLOSE, MF_DISABLED);
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// Òì³£:  OCX ÊôĞÔÒ³Ó¦·µ»Ø FALSE
+	// å¼‚å¸¸:  OCX å±æ€§é¡µåº”è¿”å› FALSE
 }
 
 void CMulticastDlg::OnClose()
 {
-	// TODO:  ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌĞò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
+	// TODO:  åœ¨æ­¤æ·»åŠ æ¶ˆæ¯å¤„ç†ç¨‹åºä»£ç å’Œ/æˆ–è°ƒç”¨é»˜è®¤å€¼
 	CDialogEx::OnClose();
 }
 
+
 /******************************************************************
 Function	: UnCompressData
-Parameter	: biSizeImage--Í¼ÏñÊı¾İÎ´Ñ¹ËõÇ°µÄ´óĞ¡
-bmpCompressSize--Í¼ÏñÊı¾İÑ¹ËõºóµÄ´óĞ¡
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:36
+Parameter	: biSizeImage--å›¾åƒæ•°æ®æœªå‹ç¼©å‰çš„å¤§å°
+Parameter	: bmpCompressSize--å›¾åƒæ•°æ®å‹ç¼©åçš„å¤§å°
 Return		: BYTE*
-Desc		: ½âËõ½ÓÊÕµ½À´×Ô½ÌÊ¦»úµÄÆÁÄ»Í¼ÏñÊı¾İ
+Desc		: è§£ç¼©æ¥æ”¶åˆ°æ¥è‡ªæ•™å¸ˆæœºçš„å±å¹•å›¾åƒæ•°æ®
 ******************************************************************/
 BYTE* CMulticastDlg::UnCompressData(uLongf biSizeImage, unsigned long bmpCompressSize)
 {
@@ -337,38 +354,46 @@ BYTE* CMulticastDlg::UnCompressData(uLongf biSizeImage, unsigned long bmpCompres
 	return bmpShowData;
 }
 
+
 /******************************************************************
 Function	: CloseModalDlg
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:36
 Return		: void
-Desc		: ¹Ø±ÕModal ¶Ô»°¿ò
+Desc		: å…³é—­Modal å¯¹è¯æ¡†
 ******************************************************************/
 void CMulticastDlg::CloseModalDlg()
 {
 	CDialog::OnCancel();
 }
 
+
 /******************************************************************
 Function	: OnNcDestroy
-Parameter	: ÎŞ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:37
 Return		: void
-Desc		: ¿ÉÒÔÔÚÕâ¸ö·½·¨ÖĞÊÍ·Å×Ô¼ºµÄ ÄÚ´æ(delete this)
+Desc		: å¯ä»¥åœ¨è¿™ä¸ªæ–¹æ³•ä¸­é‡Šæ”¾è‡ªå·±çš„ å†…å­˜(delete this)
 ******************************************************************/
 void CMulticastDlg::OnNcDestroy()
 {
 	CDialogEx::OnNcDestroy();
 }
 
+
 /******************************************************************
 Function	: OnSysCommand
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:37
 Parameter	: nID--
-Return		:
-Desc		: ÏìÓ¦WM_SYSCOMMAND ÏûÏ¢£¬ÔÚ·½·¨ÄÚÌí¼Ó´úÂëÆÁ±ÎALT+F4¿ì½İ¼ü
+Parameter	: lParam--
+Return		: void
+Desc		: å“åº”WM_SYSCOMMAND æ¶ˆæ¯ï¼Œåœ¨æ–¹æ³•å†…æ·»åŠ ä»£ç å±è”½ALT+F4å¿«æ·é”®
 ******************************************************************/
 void CMulticastDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
-	// TODO:  ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌĞò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
-	// Èç¹ûÊÇALT + F4 Ôò²»´¦ÀíÕâ¸öÏûÏ¢
+	// TODO:  åœ¨æ­¤æ·»åŠ æ¶ˆæ¯å¤„ç†ç¨‹åºä»£ç å’Œ/æˆ–è°ƒç”¨é»˜è®¤å€¼
+	// å¦‚æœæ˜¯ALT + F4 åˆ™ä¸å¤„ç†è¿™ä¸ªæ¶ˆæ¯
 	if ((nID & 0xFFF0) != SC_CLOSE)
 	{
 		CDialog::OnSysCommand(nID, lParam);

@@ -1,8 +1,4 @@
-
-// StudentDlg.cpp : ÊµÏÖÎÄ¼ş
-//
-
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "Student.h"
 #include "StudentDlg.h"
 #include "afxdialogex.h"
@@ -13,13 +9,13 @@
 #endif
 
 
-// CStudentDlg ¶Ô»°¿ò
+// CStudentDlg å¯¹è¯æ¡†
 
 
 
 CStudentDlg::CStudentDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CStudentDlg::IDD, pParent)
-	, m_stuName(_T("Ê¯ÔÌ½ğ"))
+	, m_stuName(_T("çŸ³è•´é‡‘"))
 	, m_stuID(_T("1150111308"))
 	, m_pCtrlCenter(NULL)
 {
@@ -43,36 +39,36 @@ BEGIN_MESSAGE_MAP(CStudentDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CStudentDlg ÏûÏ¢´¦Àí³ÌĞò
+// CStudentDlg æ¶ˆæ¯å¤„ç†ç¨‹åº
 
 BOOL CStudentDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// ÉèÖÃ´Ë¶Ô»°¿òµÄÍ¼±ê¡£  µ±Ó¦ÓÃ³ÌĞòÖ÷´°¿Ú²»ÊÇ¶Ô»°¿òÊ±£¬¿ò¼Ü½«×Ô¶¯
-	//  Ö´ĞĞ´Ë²Ù×÷
-	SetIcon(m_hIcon, TRUE);			// ÉèÖÃ´óÍ¼±ê
-	SetIcon(m_hIcon, FALSE);		// ÉèÖÃĞ¡Í¼±ê
+	// è®¾ç½®æ­¤å¯¹è¯æ¡†çš„å›¾æ ‡ã€‚  å½“åº”ç”¨ç¨‹åºä¸»çª—å£ä¸æ˜¯å¯¹è¯æ¡†æ—¶ï¼Œæ¡†æ¶å°†è‡ªåŠ¨
+	//  æ‰§è¡Œæ­¤æ“ä½œ
+	SetIcon(m_hIcon, TRUE);			// è®¾ç½®å¤§å›¾æ ‡
+	SetIcon(m_hIcon, FALSE);		// è®¾ç½®å°å›¾æ ‡
 
-	// TODO:  ÔÚ´ËÌí¼Ó¶îÍâµÄ³õÊ¼»¯´úÂë
-	// ÔÚÍĞÅÌÏÔÊ¾Í¼±ê
+	// TODO:  åœ¨æ­¤æ·»åŠ é¢å¤–çš„åˆå§‹åŒ–ä»£ç 
+	// åœ¨æ‰˜ç›˜æ˜¾ç¤ºå›¾æ ‡
 	InitNofIconData();
-	return TRUE;  // ³ı·Ç½«½¹µãÉèÖÃµ½¿Ø¼ş£¬·ñÔò·µ»Ø TRUE
+	return TRUE;  // é™¤éå°†ç„¦ç‚¹è®¾ç½®åˆ°æ§ä»¶ï¼Œå¦åˆ™è¿”å› TRUE
 }
 
-// Èç¹ûÏò¶Ô»°¿òÌí¼Ó×îĞ¡»¯°´Å¥£¬ÔòĞèÒªÏÂÃæµÄ´úÂë
-//  À´»æÖÆ¸ÃÍ¼±ê¡£  ¶ÔÓÚÊ¹ÓÃÎÄµµ/ÊÓÍ¼Ä£ĞÍµÄ MFC Ó¦ÓÃ³ÌĞò£¬
-//  Õâ½«ÓÉ¿ò¼Ü×Ô¶¯Íê³É¡£
+// å¦‚æœå‘å¯¹è¯æ¡†æ·»åŠ æœ€å°åŒ–æŒ‰é’®ï¼Œåˆ™éœ€è¦ä¸‹é¢çš„ä»£ç 
+//  æ¥ç»˜åˆ¶è¯¥å›¾æ ‡ã€‚  å¯¹äºä½¿ç”¨æ–‡æ¡£/è§†å›¾æ¨¡å‹çš„ MFC åº”ç”¨ç¨‹åºï¼Œ
+//  è¿™å°†ç”±æ¡†æ¶è‡ªåŠ¨å®Œæˆã€‚
 
 void CStudentDlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // ÓÃÓÚ»æÖÆµÄÉè±¸ÉÏÏÂÎÄ
+		CPaintDC dc(this); // ç”¨äºç»˜åˆ¶çš„è®¾å¤‡ä¸Šä¸‹æ–‡
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// Ê¹Í¼±êÔÚ¹¤×÷Çø¾ØĞÎÖĞ¾ÓÖĞ
+		// ä½¿å›¾æ ‡åœ¨å·¥ä½œåŒºçŸ©å½¢ä¸­å±…ä¸­
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -80,7 +76,7 @@ void CStudentDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// »æÖÆÍ¼±ê
+		// ç»˜åˆ¶å›¾æ ‡
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -89,8 +85,8 @@ void CStudentDlg::OnPaint()
 	}
 }
 
-//µ±ÓÃ»§ÍÏ¶¯×îĞ¡»¯´°¿ÚÊ±ÏµÍ³µ÷ÓÃ´Ëº¯ÊıÈ¡µÃ¹â±ê
-//ÏÔÊ¾¡£
+//å½“ç”¨æˆ·æ‹–åŠ¨æœ€å°åŒ–çª—å£æ—¶ç³»ç»Ÿè°ƒç”¨æ­¤å‡½æ•°å–å¾—å…‰æ ‡
+//æ˜¾ç¤ºã€‚
 HCURSOR CStudentDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
@@ -98,20 +94,27 @@ HCURSOR CStudentDlg::OnQueryDragIcon()
 
 
 
+/******************************************************************
+Function	: OnBnClickedOk
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:17
+Return		: void
+Desc		: ç›‘å¬ç¡®å®šæŒ‰é’®
+******************************************************************/
 void CStudentDlg::OnBnClickedOk()
 {
 
 	if (false == IsEdtDataEmpty())
 	{
 //		IsEdtDataEmpty();
-		// Òş²Ø´°¿Ú
+		// éšè—çª—å£
 		ShowWindow(SW_HIDE);
 		STUINFODATA stuInfoData;
 		wcscpy_s(stuInfoData.m_stuName, m_stuName);
 		wcscpy_s(stuInfoData.m_stuID, m_stuID);
 
 		m_pCtrlCenter = new CControlCenter(stuInfoData);
-		// ´´½¨Ò»¸öÏß³ÌÓÃÓÚ¼àÌı½ÌÊ¦»úµÄÇëÇó
+		// åˆ›å»ºä¸€ä¸ªçº¿ç¨‹ç”¨äºç›‘å¬æ•™å¸ˆæœºçš„è¯·æ±‚
 		::CloseHandle(CreateThread(NULL, 0, OnBeginServer, (LPVOID)m_pCtrlCenter, 0, 0));
 	}
 
@@ -135,33 +138,33 @@ void CStudentDlg::InitNofIconData()
 	m_notifyIconData.hWnd = m_hWnd;
 	m_notifyIconData.uID = IDR_MAINFRAME;
 	m_notifyIconData.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
-	m_notifyIconData.uCallbackMessage = WM_SHOWTASKICON; // ×Ô¶¨ÒåÍĞÅÌ²Ëµ¥ÏûÏ¢
+	m_notifyIconData.uCallbackMessage = WM_SHOWTASKICON; // è‡ªå®šä¹‰æ‰˜ç›˜èœå•æ¶ˆæ¯
 	m_notifyIconData.hIcon = ::LoadIcon(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_MAINFRAME));
-	wcscpy_s(m_notifyIconData.szTip, _T("ÆÁÄ»¹ã²¥"));
-	Shell_NotifyIcon(NIM_ADD, &m_notifyIconData); // ÔÚÍĞÅÌÇøÌí¼ÓÍ¼±ê
+	wcscpy_s(m_notifyIconData.szTip, _T("å±å¹•å¹¿æ’­"));
+	Shell_NotifyIcon(NIM_ADD, &m_notifyIconData); // åœ¨æ‰˜ç›˜åŒºæ·»åŠ å›¾æ ‡
 }
 
 LRESULT CStudentDlg::OnShowTaskIcon(WPARAM wParam, LPARAM lParam)
 {
-	// ÅĞ¶ÏÍ¼±êIDÊÇ·ñÏà·û
+	// åˆ¤æ–­å›¾æ ‡IDæ˜¯å¦ç›¸ç¬¦
 	if (wParam != IDR_MAINFRAME)
 		return 1;
 	switch (lParam)
 	{
-	case WM_RBUTTONUP:  // °´Êó±êÓÒ¼ü
+	case WM_RBUTTONUP:  // æŒ‰é¼ æ ‡å³é”®
 	{
 		CPoint point;
 		GetCursorPos(&point);
 		CMenu menu;
 		menu.CreatePopupMenu();
-//		menu.AppendMenu(MF_STRING, IDM_SHOW_WINDOW, _T("ÏÔÊ¾"));
-		menu.AppendMenu(MF_STRING, WM_DESTROY, _T("ÍË³ö"));
-		SetForegroundWindow();  // ½â¾ö²Ëµ¥Ê§È¥½¹µã²»ÏûÊ§µÄBUG
+//		menu.AppendMenu(MF_STRING, IDM_SHOW_WINDOW, _T("æ˜¾ç¤º"));
+		menu.AppendMenu(MF_STRING, WM_DESTROY, _T("é€€å‡º"));
+		SetForegroundWindow();  // è§£å†³èœå•å¤±å»ç„¦ç‚¹ä¸æ¶ˆå¤±çš„BUG
 		menu.TrackPopupMenu(TPM_LEFTALIGN, point.x, point.y, this);
 		menu.DestroyMenu();
 	}
 		break;
-// 	case WM_LBUTTONDBLCLK: // Ë«»÷Êó±ê×ó¼ü
+// 	case WM_LBUTTONDBLCLK: // åŒå‡»é¼ æ ‡å·¦é”®
 // 		OnShowDlg();
 	}
 	return 0;
@@ -179,6 +182,13 @@ LRESULT CStudentDlg::OnShowTaskIcon(WPARAM wParam, LPARAM lParam)
 // 		ShowWindow(SW_SHOW);
 // }
 
+/******************************************************************
+Function	: IsEdtDataEmpty
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:16
+Return		: bool
+Desc		: æ£€æµ‹è¡¨å•å®Œæ•´æ€§
+******************************************************************/
 bool CStudentDlg::IsEdtDataEmpty()
 {
 	bool isEmpty =  false;
@@ -187,12 +197,12 @@ bool CStudentDlg::IsEdtDataEmpty()
 	CString warmStr(_T(""));
 	if (m_stuName.IsEmpty())
 	{
-		warmStr += _T("ĞÕÃû²»ÄÜÎª¿Õ");
+		warmStr += _T("å§“åä¸èƒ½ä¸ºç©º");
 		isEmpty = true;
 	}
 	if (m_stuID.IsEmpty())
 	{
-		warmStr += _T("Ñ§ºÅ²»ÄÜÎª¿Õ");
+		warmStr += _T("å­¦å·ä¸èƒ½ä¸ºç©º");
 		isEmpty = true;
 	}
 	if (true == isEmpty)
@@ -203,15 +213,22 @@ bool CStudentDlg::IsEdtDataEmpty()
 }
 
 
+/******************************************************************
+Function	: OnBnClickedCancel
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:17
+Return		: void
+Desc		: å–æ¶ˆæŒ‰é’®ç›‘å¬
+******************************************************************/
 void CStudentDlg::OnBnClickedCancel()
 {
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO:  åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	if (m_pCtrlCenter != NULL)
 	{
 		delete m_pCtrlCenter;
 		m_pCtrlCenter = NULL;
 	}
-	Shell_NotifyIcon(NIM_DELETE, &m_notifyIconData); // ÔÚÍĞÅÌÇøÌí¼ÓÍ¼±ê
+	Shell_NotifyIcon(NIM_DELETE, &m_notifyIconData); // åœ¨æ‰˜ç›˜åŒºæ·»åŠ å›¾æ ‡
 	CDialogEx::OnCancel();
 }
 
@@ -220,6 +237,6 @@ void CStudentDlg::OnDestroy()
 {
 	CDialogEx::OnDestroy();
 
-	// TODO:  ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌĞò´úÂë
-	Shell_NotifyIcon(NIM_DELETE, &m_notifyIconData); // ÔÚÍĞÅÌÇøÌí¼ÓÍ¼±ê
+	// TODO:  åœ¨æ­¤å¤„æ·»åŠ æ¶ˆæ¯å¤„ç†ç¨‹åºä»£ç 
+	Shell_NotifyIcon(NIM_DELETE, &m_notifyIconData); // åœ¨æ‰˜ç›˜åŒºæ·»åŠ å›¾æ ‡
 }

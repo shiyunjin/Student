@@ -1,7 +1,7 @@
-#pragma once
+ï»¿#pragma once
 #include <math.h>
 //////////////////////////////////////////////////////////////////////////
-// zlib¿â ĞèÒªÊ¹ÓÃÆäÖĞµÄÑ¹ËõÍ¼Æ¬¹¦ÄÜ
+// zlibåº“ éœ€è¦ä½¿ç”¨å…¶ä¸­çš„å‹ç¼©å›¾ç‰‡åŠŸèƒ½
 #include "zlib.h"
 #include "zconf.h"
 #pragma comment(lib,"zlib.lib")
@@ -48,7 +48,7 @@ public:
 
 private:
 	int m_bmpHeadTotalSize;
-	// Í¼ÏñµÄÍ·ĞÅÏ¢
+	// å›¾åƒçš„å¤´ä¿¡æ¯
 	BITMAPINFO* m_pBitMapInfo;
 	uLongf m_imgTotalSize;
 	BYTE* m_pBmpTransData;

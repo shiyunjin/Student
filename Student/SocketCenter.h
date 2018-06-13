@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Comment.h"
 #include <stdio.h>
 class CSocketCenter

@@ -1,8 +1,4 @@
-/******************************************************************* 
-FileName: StuInfo.cpp
-Desc	: ×¨ÃÅ´¦ÀíÑ§ÉúĞÅÏ¢Ïà¹ØÄÚÈİµÄÀà
-*******************************************************************/ 
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "StuInfo.h"
 #include "SocketCenter.h"
 
@@ -16,17 +12,21 @@ CStuInfo::~CStuInfo()
 {
 }
 
+
 /******************************************************************
 Function	: SendStuInfo
-Parameter	: socket--Á¬½Ó½ÌÊ¦»úµÄSOCKET£¬ stuInfo--Ñ§ÉúĞÅÏ¢½á¹¹Ìå
-Return		: 
-Desc		: 
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:15
+Parameter	: socket--è¿æ¥æ•™å¸ˆæœºçš„SOCKET
+Parameter	: stuInfo--å­¦ç”Ÿä¿¡æ¯ç»“æ„ä½“
+Return		: void
+Desc		: å‘é€å­¦ç”Ÿä¿¡æ¯
 ******************************************************************/
 void CStuInfo::SendStuInfo(SOCKET socket, STUINFODATA& stuInfo)
 {
 	CSocketCenter socketCenter;
-	// Í¨Öª½ÌÊ¦¶Ë×¼±¸½ÓÊÕÑ§ÉúĞÅÏ¢
+	// é€šçŸ¥æ•™å¸ˆç«¯å‡†å¤‡æ¥æ”¶å­¦ç”Ÿä¿¡æ¯
 	socketCenter.SendReadyInfo(socket, STUDENTINFO);
-	// ·¢ËÍµÇÂ¼Ñ§ÉúµÄĞÅÏ¢µ½½ÌÊ¦¶Ë
+	// å‘é€ç™»å½•å­¦ç”Ÿçš„ä¿¡æ¯åˆ°æ•™å¸ˆç«¯
 	socketCenter.SendDataTCP(socket, (char*)&stuInfo, sizeof(STUINFODATA));
 }

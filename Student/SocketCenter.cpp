@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "SocketCenter.h"
 //#include <winsock2.h>
 
@@ -13,12 +13,15 @@ CSocketCenter::~CSocketCenter()
 //	WSACleanup();
 }
 
+
 /******************************************************************
 Function	: InitSocket
-Parameter	: 		IP--Á¬½ÓµÄIPµØÖ·
-port--Á¬½ÓµÄ¶Ë¿ÚºÅ
-Return		: socketConnect--Á¬½Ó½ÌÊ¦»ú³É¹¦µÄÌ×½Ó×Ö
-Desc		: ³õÊ¼»¯SOCKET ²¢Á¬½Ó·şÎñÆ÷
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:19
+Parameter	: IP--è¿æ¥çš„IPåœ°å€
+Parameter	: port--è¿æ¥çš„ç«¯å£å·
+Return		: SOCKET--è¿æ¥æ•™å¸ˆæœºæˆåŠŸçš„å¥—æ¥å­—
+Desc		: åˆå§‹åŒ–SOCKET å¹¶è¿æ¥æœåŠ¡å™¨
 ******************************************************************/
 SOCKET CSocketCenter::InitSocket(char* IP, int port)
 {
@@ -64,13 +67,16 @@ SOCKET CSocketCenter::InitSocket(char* IP, int port)
 	}
 }
 
+
 /******************************************************************
 Function	: SendDataTCP
-Parameter	: 		socket--¾­¹ı³õÊ¼»¯µÄSOCKET¶ÔÏó
-sendBuf--ĞèÒª·¢ËÍµÄÊı¾İĞÅÏ¢Êı×é
-sendBytes--ĞèÒª·¢ËÍµÄÊı¾İµÄ´óĞ¡
-Return		: int--·¢ËÍ³É¹¦µÄÊı¾İ×Ö½ÚÊı
-Desc		: ½«Êı¾İ·¢ËÍµ½½ÌÊ¦»ú
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:19
+Parameter	: socket--ç»è¿‡åˆå§‹åŒ–çš„SOCKETå¯¹è±¡
+Parameter	: sendBuf--éœ€è¦å‘é€çš„æ•°æ®ä¿¡æ¯æ•°ç»„
+Parameter	: sendBytes--éœ€è¦å‘é€çš„æ•°æ®çš„å¤§å°
+Return		: int--å‘é€æˆåŠŸçš„æ•°æ®å­—èŠ‚æ•°
+Desc		: å°†æ•°æ®å‘é€åˆ°æ•™å¸ˆæœº
 ******************************************************************/
 int CSocketCenter::SendDataTCP(SOCKET socket, const char* sendBuf, int sendBytes)
 {
@@ -101,13 +107,16 @@ int CSocketCenter::SendDataTCP(SOCKET socket, const char* sendBuf, int sendBytes
 	return pNeedToSend - sendBuf;
 }
 
+
 /******************************************************************
 Function	: RecvDataTCP
-Parameter	: 		socket--¾­¹ı³õÊ¼»¯µÄSOCKET¶ÔÏó
-getBuf--´Ó¿Í»§¶Ë½ÓÊÕµÄÊı¾İµÄ±£´æÊı×é
-sendBytes--´Ó¿Í»§¶Ë½ÓÊÕµÄÊı¾İµÄ´óĞ¡
-Return		: int--½ÓÊÕ³É¹¦µÄ×Ö½ÚÊı
-Desc		: ½ÓÊÕ½ÌÊ¦»úµÄÊı¾İ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:19
+Parameter	: socket--ç»è¿‡åˆå§‹åŒ–çš„SOCKETå¯¹è±¡
+Parameter	: getBuf--ä»å®¢æˆ·ç«¯æ¥æ”¶çš„æ•°æ®çš„ä¿å­˜æ•°ç»„
+Parameter	: recvBytes--ä»å®¢æˆ·ç«¯æ¥æ”¶çš„æ•°æ®çš„å¤§å°
+Return		: int--æ¥æ”¶æˆåŠŸçš„å­—èŠ‚æ•°
+Desc		: æ¥æ”¶æ•™å¸ˆæœºçš„æ•°æ®
 ******************************************************************/
 int CSocketCenter::RecvDataTCP(SOCKET socket, char* getBuf, int recvBytes)
 {
@@ -143,12 +152,15 @@ int CSocketCenter::RecvDataTCP(SOCKET socket, char* getBuf, int recvBytes)
 	return pNeedToRecv - getBuf;
 }
 
+
 /******************************************************************
 Function	: SendReadyInfo
-Parameter	: socket--Óë½ÌÊ¦»úÏàÁ¬µÄsocket
-msgID--ĞèÒª·¢ËÍ¸ø½ÌÊ¦»úµÄÏûÏ¢
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:20
+Parameter	: socket--ä¸æ•™å¸ˆæœºç›¸è¿çš„socket
+Parameter	: msgID--éœ€è¦å‘é€ç»™æ•™å¸ˆæœºçš„æ¶ˆæ¯
 Return		: void
-Desc		: ½«ÏûÏ¢·¢ËÍµ½½ÌÊ¦»ú
+Desc		: å°†æ¶ˆæ¯å‘é€åˆ°æ•™å¸ˆæœº
 ******************************************************************/
 void CSocketCenter::SendReadyInfo(SOCKET socket, int msgID)
 {
@@ -158,12 +170,15 @@ void CSocketCenter::SendReadyInfo(SOCKET socket, int msgID)
 	SendDataTCP(socket, (char*)&msgType, sizeof(MSGTYPE));
 }
 
+
 /******************************************************************
 Function	: InitMulticastSocket
-Parameter	: port--Á¬½Ó½ÌÊ¦»úµÄ¶Ë¿Ú
-multicastIp--Á¬½Ó½ÌÊ¦»úµÄIPµØÖ·
-Return		: SOCKET--³õÊ¼»¯ºóµÄSOCKET
-Desc		: ³õÊ¼»¯UDPÁ¬½Ó£¨IP×é²¥¼¼Êõ£©µÄÏà¹ØĞÅÏ¢
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:20
+Parameter	: port--è¿æ¥æ•™å¸ˆæœºçš„ç«¯å£
+Parameter	: multicastIp--è¿æ¥æ•™å¸ˆæœºçš„IPåœ°å€
+Return		: SOCKET--åˆå§‹åŒ–åçš„SOCKET
+Desc		: åˆå§‹åŒ–UDPè¿æ¥ï¼ˆIPç»„æ’­æŠ€æœ¯ï¼‰çš„ç›¸å…³ä¿¡æ¯
 ******************************************************************/
 SOCKET CSocketCenter::InitMulticastSocket(int port, char* multicastIp)
 {
@@ -222,13 +237,16 @@ SOCKET CSocketCenter::InitMulticastSocket(int port, char* multicastIp)
 }
 
 
+
 /******************************************************************
 Function	: RecvDataUDP
-Parameter	: 		socket--¾­¹ı³õÊ¼»¯µÄSOCKET¶ÔÏó
-getBuf--´Ó¿Í»§¶Ë½ÓÊÕµÄÊı¾İµÄ±£´æÊı×é
-sendBytes--´Ó¿Í»§¶Ë½ÓÊÕµÄÊı¾İµÄ´óĞ¡
-Return		: int--·¢ËÍ³É¹¦µÄÊı¾İ×Ö½ÚÊı
-Desc		: ½ÓÊÕÀ´×Ô½ÌÊ¦»úµÄÊı¾İ
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:21
+Parameter	: socket--ç»è¿‡åˆå§‹åŒ–çš„SOCKETå¯¹è±¡
+Parameter	: getBuf--ä»å®¢æˆ·ç«¯æ¥æ”¶çš„æ•°æ®çš„ä¿å­˜æ•°ç»„
+Parameter	: recvBytes--ä»å®¢æˆ·ç«¯æ¥æ”¶çš„æ•°æ®çš„å¤§å°
+Return		: int--å‘é€æˆåŠŸçš„æ•°æ®å­—èŠ‚æ•°
+Desc		: æ¥æ”¶æ¥è‡ªæ•™å¸ˆæœºçš„æ•°æ®
 ******************************************************************/
 int CSocketCenter::RecvDataUDP(SOCKET socket, char* getBuf, int recvBytes)
 {
@@ -254,17 +272,33 @@ int CSocketCenter::RecvDataUDP(SOCKET socket, char* getBuf, int recvBytes)
 	return pNeedToRecv - getBuf;
 }
 
+
+/******************************************************************
+Function	: Cleanup
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:21
+Return		: void
+Desc		: æ¸…ç†
+******************************************************************/
 void CSocketCenter::Cleanup()
 {
 	WSACleanup();
 }
 
+
+/******************************************************************
+Function	: GetIP
+Author		: shiyunjin(luoyibin_001@163.com)
+Date		: 2018-6-13 14:21
+Return		: char *
+Desc		: å¼€å¯IPå¯»æ’­,å¹¿æ’­é€šçŸ¥è‡ªå·±ipå¹¶è¦æ±‚æœåŠ¡ç«¯è¿”å›åŒç½‘æ®µè‡ªå·±çš„ip
+******************************************************************/
 char * CSocketCenter::GetIP() {
 	int nPort = IP_PORT;
 	WORD wVersionRequested;
 	WSADATA wsaData;
 	int err;
-	// Æô¶¯socket api   
+	// å¯åŠ¨socket api   
 	wVersionRequested = MAKEWORD(2, 2);
 	err = WSAStartup(wVersionRequested, &wsaData);
 	if (err != 0)
@@ -278,7 +312,7 @@ char * CSocketCenter::GetIP() {
 		return "";
 	}
 
-	// ´´½¨socket   
+	// åˆ›å»ºsocket   
 	SOCKET connect_socket;
 	connect_socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	if (INVALID_SOCKET == connect_socket)
@@ -288,27 +322,27 @@ char * CSocketCenter::GetIP() {
 		return "";
 	}
 	
-	// ÓÃÀ´°ó¶¨Ì×½Ó×Ö   
+	// ç”¨æ¥ç»‘å®šå¥—æ¥å­—   
 	SOCKADDR_IN sin;
 	sin.sin_family = AF_INET;
 	sin.sin_port = htons(CLIENT_PORT);
 	sin.sin_addr.s_addr = 0;
 
-	// ÓÃÀ´´ÓÍøÂçÉÏµÄ¹ã²¥µØÖ·½ÓÊÕÊı¾İ   
+	// ç”¨æ¥ä»ç½‘ç»œä¸Šçš„å¹¿æ’­åœ°å€æ¥æ”¶æ•°æ®   
 	SOCKADDR_IN sin_from;
 	sin_from.sin_family = AF_INET;
 	sin_from.sin_port = htons(nPort);
 	sin_from.sin_addr.s_addr = INADDR_BROADCAST;
 
-	//ÉèÖÃ¸ÃÌ×½Ó×ÖÎª¹ã²¥ÀàĞÍ£¬   
+	//è®¾ç½®è¯¥å¥—æ¥å­—ä¸ºå¹¿æ’­ç±»å‹ï¼Œ   
 	bool bOpt = true;
 	setsockopt(connect_socket, SOL_SOCKET, SO_BROADCAST, (char*)&bOpt, sizeof(bOpt));
 
-	//ÉèÖÃÌ×½Ó×Ö³¬Ê±
+	//è®¾ç½®å¥—æ¥å­—è¶…æ—¶
 	struct timeval timeout = { 2,0 };
 	setsockopt(connect_socket, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout));
 	
-	// °ó¶¨Ì×½Ó×Ö   
+	// ç»‘å®šå¥—æ¥å­—   
 	err = bind(connect_socket, (SOCKADDR*)&sin, sizeof(SOCKADDR));
 	if (SOCKET_ERROR == err)
 	{
@@ -334,7 +368,7 @@ char * CSocketCenter::GetIP() {
 	}
 	
 
-	// ½ÓÊÕÊı¾İ   
+	// æ¥æ”¶æ•°æ®   
 	int nSendSize = recvfrom(connect_socket, buff, 255, 0, (SOCKADDR*)&sin_from, &nAddrLen);
 	if (SOCKET_ERROR == nSendSize)
 	{

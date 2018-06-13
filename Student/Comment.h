@@ -1,14 +1,14 @@
-#pragma once
+ï»¿#pragma once
 #include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
 //////////////////////////////////////////////////////////////////////////
-// ÄÚ´æĞ¹Â¶Í·ÎÄ¼ş
+// å†…å­˜æ³„éœ²å¤´æ–‡ä»¶
 // #define CRTDBG_MAP_ALLOC
 // #include <stdlib.h>
 // #include <crtdbg.h>
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-// visual Leak dealtector ÄÚ´æĞ¹Â¶ĞèÒªÌí¼ÓµÄÍ·ÎÄ¼ş 
+// visual Leak dealtector å†…å­˜æ³„éœ²éœ€è¦æ·»åŠ çš„å¤´æ–‡ä»¶ 
 //#include <vld.h>
 //////////////////////////////////////////////////////////////////////////
 
@@ -45,15 +45,15 @@
 
 typedef struct tagMSGTYPE
 {
-	int msgID;	// ÏûÏ¢µÄID
-//	bool flag; // ±êÖ¾Î»£¬ÓÃÓÚ½áÊø»ò¿ªÊ¼µÄÅĞ¶Ï
+	int msgID;	// æ¶ˆæ¯çš„ID
+//	bool flag; // æ ‡å¿—ä½ï¼Œç”¨äºç»“æŸæˆ–å¼€å§‹çš„åˆ¤æ–­
 }MSGTYPE;
 
 typedef struct tagSTUINFO
 {
-	// Ñ§ÉúĞÕÃû
+	// å­¦ç”Ÿå§“å
 	TCHAR m_stuName[20];
-	// Ñ§ÉúµÄÑ§ºÅ
+	// å­¦ç”Ÿçš„å­¦å·
 	TCHAR m_stuID[20];
 }STUINFODATA;
 
@@ -71,7 +71,7 @@ typedef struct tagBMPHEADINFO
 
  typedef struct tagBMPDATA
  {
-	 bool isShow; // ÊÇ·ñ¿ÉÒÔÏÔÊ¾Í¼Ïñ
+	 bool isShow; // æ˜¯å¦å¯ä»¥æ˜¾ç¤ºå›¾åƒ
 	 int infoType;
 	 UINT beginPos;
 //	 int ID;
@@ -82,7 +82,7 @@ typedef struct tagBMPHEADINFO
 
  typedef struct tagMULTICAST
  {
-	 bool isShow; // ÊÇ·ñ¿ÉÒÔÏÔÊ¾Í¼Ïñ
+	 bool isShow; // æ˜¯å¦å¯ä»¥æ˜¾ç¤ºå›¾åƒ
 	 int infoType;    
 	 UINT beginPos;
 	 int ID;

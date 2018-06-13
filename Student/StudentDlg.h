@@ -1,30 +1,30 @@
-
-// StudentDlg.h : Í·ÎÄ¼ş
+ï»¿
+// StudentDlg.h : å¤´æ–‡ä»¶
 //
 
 #pragma once
 #include "ControlCenter.h"
 #define WM_SHOWTASKICON WM_USER + 4
 #define IDM_SHOW_WINDOW WM_USER + 5
-// CStudentDlg ¶Ô»°¿ò
+// CStudentDlg å¯¹è¯æ¡†
 class CStudentDlg : public CDialogEx
 {
-// ¹¹Ôì
+// æ„é€ 
 public:
-	CStudentDlg(CWnd* pParent = NULL);	// ±ê×¼¹¹Ôìº¯Êı
+	CStudentDlg(CWnd* pParent = NULL);	// æ ‡å‡†æ„é€ å‡½æ•°
 
-// ¶Ô»°¿òÊı¾İ
+// å¯¹è¯æ¡†æ•°æ®
 	enum { IDD = IDD_STUDENT_DIALOG };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV æ”¯æŒ
 
 
-// ÊµÏÖ
+// å®ç°
 protected:
 	HICON m_hIcon;
 
-	// Éú³ÉµÄÏûÏ¢Ó³Éäº¯Êı
+	// ç”Ÿæˆçš„æ¶ˆæ¯æ˜ å°„å‡½æ•°
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
@@ -42,7 +42,7 @@ protected:
 public:
 private:
 	CString m_stuName;
-	// Ñ§ÉúµÄÑ§ºÅ
+	// å­¦ç”Ÿçš„å­¦å·
 	CString m_stuID;
 	NOTIFYICONDATA m_notifyIconData;
 	CControlCenter*  m_pCtrlCenter;
